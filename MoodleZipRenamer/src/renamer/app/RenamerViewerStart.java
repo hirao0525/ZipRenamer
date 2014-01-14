@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -74,9 +73,16 @@ public class RenamerViewerStart extends JFrame {
 						}
 					}
 
+					// for (CFileElement cfile : dir.getChildren()) {
+					// String filename = cfile.getNameByString();
+					// String seg = filename.substring(0,
+					// filename.length() - 4);
+					// cfile.renameTo(seg + "-2" + ".zip");
+					// }
+
 					bufferreader.close();
 					filereader.close();
-				} catch (IOException ex) {
+				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
 			}
