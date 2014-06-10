@@ -68,7 +68,9 @@ public class RenamerViewerStart extends JFrame {
 							String fileCreaterName = cfile.getNameByString()
 									.split("_")[0];
 							if (userdata[0].equals(fileCreaterName)) {
-								cfile.renameTo(userdata[1] + ".zip");
+								String extantion = cfile.getNameByString()
+										.split("\\.")[1];
+								cfile.renameTo(userdata[1] + "." + extantion);
 							}
 						}
 					}
