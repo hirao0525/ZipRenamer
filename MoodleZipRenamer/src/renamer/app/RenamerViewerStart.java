@@ -16,8 +16,8 @@ import clib.view.dnd.CFileDropInDataTransferHandler;
 import clib.view.dnd.ICFileDroppedListener;
 
 /*
- * プログラム名： 
- * 作成者： 
+ * プログラム名： moodleから一括で落としたzipファイルをcsvファイルから読み込んだ情報に従って名前をき換えるプログラム
+ * 作成者： motoki hirao
  */
 
 public class RenamerViewerStart extends JFrame {
@@ -56,7 +56,7 @@ public class RenamerViewerStart extends JFrame {
 				try {
 					CDirectory dir = (CDirectory) CFileSystem
 							.convertToCFile(file);
-					FileReader filereader = new FileReader("./prog2013.csv");
+					FileReader filereader = new FileReader("./member.csv");
 					BufferedReader bufferreader = new BufferedReader(filereader);
 					String[] userdata;
 					String line = "";
