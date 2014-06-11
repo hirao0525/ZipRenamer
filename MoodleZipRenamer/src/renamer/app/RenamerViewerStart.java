@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import clib.common.filesystem.CDirectory;
 import clib.common.filesystem.CFileElement;
@@ -44,6 +45,7 @@ public class RenamerViewerStart extends JFrame {
 		CFileDropInDataTransferHandler.set(this, new DroppedListener());
 
 		setBounds(0, 0, 200, 200);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setVisible(true);
 	}
@@ -52,6 +54,11 @@ public class RenamerViewerStart extends JFrame {
 
 		@Override
 		public void fileDropped(List<File> files) {
+
+			String footerText = JOptionPane.showInputDialog(
+					RenamerViewerStart.this,
+					"フッター設定（例：入力\"-1\"→出力ファイル：\"名前-1．拡張子\"");
+
 			for (File file : files) {
 				try {
 					CDirectory dir = (CDirectory) CFileSystem
@@ -70,7 +77,8 @@ public class RenamerViewerStart extends JFrame {
 							if (userdata[0].equals(fileCreaterName)) {
 								String extantion = cfile.getNameByString()
 										.split("\\.")[1];
-								cfile.renameTo(userdata[1] + "." + extantion);
+								cfile.renameTo(userdata[1] + footerText + "."
+										+ extantion);
 							}
 						}
 					}
