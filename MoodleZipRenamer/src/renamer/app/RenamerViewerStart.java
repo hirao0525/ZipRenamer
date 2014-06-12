@@ -72,9 +72,8 @@ public class RenamerViewerStart extends JFrame {
 						userdata = line.split(",");
 
 						for (CFileElement cfile : dir.getChildren()) {
-							String fileCreaterName = cfile.getNameByString()
-									.split("_")[0];
-							if (userdata[0].equals(fileCreaterName)) {
+							// ‘O•ûˆê’v‚È‚ç
+							if (cfile.getNameByString().indexOf(userdata[0]) >= 0) {
 								String extantion = cfile.getNameByString()
 										.split("\\.")[1];
 								cfile.renameTo(userdata[1] + footerText + "."
