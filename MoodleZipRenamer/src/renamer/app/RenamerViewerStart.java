@@ -83,10 +83,11 @@ public class RenamerViewerStart extends JFrame {
 					}
 
 					// for (CFileElement cfile : dir.getChildren()) {
-					// String filename = cfile.getNameByString();
-					// String seg = filename.substring(0,
-					// filename.length() - 4);
-					// cfile.renameTo(seg + "-2" + ".zip");
+					// String[] userdatas = cfile.getNameByString().split("-");
+					// String extantion =
+					// cfile.getNameByString().split("\\.")[1];
+					// cfile.renameTo(userdatas[1] + "-" + userdatas[2]
+					// + footerText + "." + extantion);
 					// }
 
 					bufferreader.close();
