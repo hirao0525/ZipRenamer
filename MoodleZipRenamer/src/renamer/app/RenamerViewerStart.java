@@ -52,14 +52,23 @@ public class RenamerViewerStart extends JFrame {
 
 	class DroppedListener implements ICFileDroppedListener {
 
+		JLabel label = new JLabel();
+
 		@Override
 		public void fileDropped(List<File> files) {
+
+			label.setText("");
+			add(label, BorderLayout.CENTER);
+			validate();
 
 			String footerText = JOptionPane.showInputDialog(
 					RenamerViewerStart.this,
 					"フッター設定（例：入力\"-1\"→出力ファイル：\"名前-1．拡張子\"");
 
 			for (File file : files) {
+				label.setText("");
+				validate();
+
 				try {
 					CDirectory dir = (CDirectory) CFileSystem
 							.convertToCFile(file);
@@ -92,14 +101,15 @@ public class RenamerViewerStart extends JFrame {
 
 					bufferreader.close();
 					filereader.close();
+
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
-			}
 
-			add(new JLabel("Compiled!"), BorderLayout.CENTER);
-			validate();
-			System.out.println("Finished");
+				label.setText(file.getName() + "Compiled!");
+				validate();
+				System.out.println(file.getName() + "Finished");
+			}
 		}
 	}
 }
