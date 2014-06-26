@@ -91,12 +91,19 @@ public class RenamerViewerStart extends JFrame {
 						}
 					}
 
+					// ハイフンで区切ってリネーム(for It's class)
 					// for (CFileElement cfile : dir.getChildren()) {
 					// String[] userdatas = cfile.getNameByString().split("-");
 					// String extantion =
 					// cfile.getNameByString().split("\\.")[1];
 					// cfile.renameTo(userdatas[1] + "-" + userdatas[2]
 					// + footerText + "." + extantion);
+					// }
+
+					// csv作成用
+					// for (CFileElement cfile : dir.getChildren()) {
+					// String[] userdatas = cfile.getNameByString().split("-");
+					// System.out.println(userdatas[0] + "-" + userdatas[1]);
 					// }
 
 					bufferreader.close();
