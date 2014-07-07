@@ -65,6 +65,12 @@ public class RenamerViewerStart extends JFrame {
 					RenamerViewerStart.this,
 					"フッター設定（例：入力\"-1\"→出力ファイル：\"名前-1．拡張子\"");
 
+			if (footerText == null) {
+				label.setText("Error!");
+				validate();
+				return;
+			}
+
 			for (File file : files) {
 				label.setText("");
 				validate();
@@ -72,42 +78,15 @@ public class RenamerViewerStart extends JFrame {
 				try {
 					CDirectory dir = (CDirectory) CFileSystem
 							.convertToCFile(file);
-					FileReader filereader = new FileReader("./member.csv");
-					BufferedReader bufferreader = new BufferedReader(filereader);
-					String[] userdata;
-					String line = "";
 
-					while ((line = bufferreader.readLine()) != null) {
-						userdata = line.split(",");
-
-						for (CFileElement cfile : dir.getChildren()) {
-							// 前方一致なら
-							if (cfile.getNameByString().indexOf(userdata[0]) >= 0) {
-								String extantion = cfile.getNameByString()
-										.split("\\.")[1];
-								cfile.renameTo(userdata[1] + footerText + "."
-										+ extantion);
-							}
-						}
-					}
+					// Moodle用リネーム
+					renameMoodleZip(dir, footerText);
 
 					// ハイフンで区切ってリネーム(for It's class)
-					// for (CFileElement cfile : dir.getChildren()) {
-					// String[] userdatas = cfile.getNameByString().split("-");
-					// String extantion =
-					// cfile.getNameByString().split("\\.")[1];
-					// cfile.renameTo(userdatas[1] + "-" + userdatas[2]
-					// + footerText + "." + extantion);
-					// }
+					renameItsClassZip(dir, footerText);
 
 					// csv作成用
-					// for (CFileElement cfile : dir.getChildren()) {
-					// String[] userdatas = cfile.getNameByString().split("-");
-					// System.out.println(userdatas[0] + "-" + userdatas[1]);
-					// }
-
-					bufferreader.close();
-					filereader.close();
+					printCreaterNumber(dir, footerText);
 
 				} catch (Exception ex) {
 					ex.printStackTrace();
@@ -116,6 +95,50 @@ public class RenamerViewerStart extends JFrame {
 				label.setText(file.getName() + "Compiled!");
 				validate();
 				System.out.println(file.getName() + "Finished");
+			}
+		}
+
+		private void renameMoodleZip(CDirectory dir, String footerText) {
+			try {
+				FileReader filereader = new FileReader("./member.csv");
+				BufferedReader bufferreader = new BufferedReader(filereader);
+				String[] userdata;
+				String line = "";
+
+				while ((line = bufferreader.readLine()) != null) {
+					userdata = line.split(",");
+
+					for (CFileElement cfile : dir.getChildren()) {
+						// 前方一致なら
+						if (cfile.getNameByString().indexOf(userdata[0]) >= 0) {
+							String extantion = cfile.getNameByString().split(
+									"\\.")[1];
+							cfile.renameTo(userdata[1] + footerText + "."
+									+ extantion);
+						}
+					}
+				}
+
+				bufferreader.close();
+				filereader.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		private void renameItsClassZip(CDirectory dir, String footerText) {
+			for (CFileElement cfile : dir.getChildren()) {
+				String[] userdatas = cfile.getNameByString().split("-");
+				String extantion = cfile.getNameByString().split("\\.")[1];
+				cfile.renameTo(userdatas[1] + "-" + userdatas[2] + footerText
+						+ "." + extantion);
+			}
+		}
+
+		private void printCreaterNumber(CDirectory dir, String footerText) {
+			for (CFileElement cfile : dir.getChildren()) {
+				String[] userdatas = cfile.getNameByString().split("-");
+				System.out.println(userdatas[0] + "-" + userdatas[1]);
 			}
 		}
 	}
