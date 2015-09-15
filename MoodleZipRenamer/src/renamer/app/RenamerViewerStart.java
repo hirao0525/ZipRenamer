@@ -17,8 +17,8 @@ import clib.view.dnd.CFileDropInDataTransferHandler;
 import clib.view.dnd.ICFileDroppedListener;
 
 /*
- * ƒvƒƒOƒ‰ƒ€–¼F moodle‚©‚çˆêŠ‡‚Å—Ž‚Æ‚µ‚½zipƒtƒ@ƒCƒ‹‚ðcsvƒtƒ@ƒCƒ‹‚©‚ç“Ç‚Ýž‚ñ‚¾î•ñ‚É]‚Á‚Ä–¼‘O‚ð‚«Š·‚¦‚éƒvƒƒOƒ‰ƒ€
- * ì¬ŽÒF motoki hirao
+ * ãƒ—ãƒ­ã‚°ãƒ©ãƒ åï¼š moodleã‹ã‚‰ä¸€æ‹¬ã§è½ã¨ã—ãŸzipãƒ•ã‚¡ã‚¤ãƒ«ã‚’csvãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚“ã æƒ…å ±ã«å¾“ã£ã¦åå‰ã‚’ãæ›ãˆã‚‹ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
+ * ä½œæˆè€…ï¼š motoki hirao
  */
 
 public class RenamerViewerStart extends JFrame {
@@ -28,13 +28,13 @@ public class RenamerViewerStart extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	// ‹N“®ˆ—
+	// èµ·å‹•å‡¦ç†
 	public static void main(String[] args) {
 		RenamerViewerStart renamerFrame = new RenamerViewerStart();
 		renamerFrame.main();
 	}
 
-	// ƒƒCƒ“
+	// ãƒ¡ã‚¤ãƒ³
 	void main() {
 		openframe();
 	}
@@ -63,7 +63,7 @@ public class RenamerViewerStart extends JFrame {
 
 			String footerText = JOptionPane.showInputDialog(
 					RenamerViewerStart.this,
-					"ƒtƒbƒ^[Ý’èi—áF“ü—Í\"-1\"¨o—Íƒtƒ@ƒCƒ‹F\"–¼‘O-1DŠg’£Žq\"");
+					"ãƒ•ãƒƒã‚¿ãƒ¼è¨­å®šï¼ˆä¾‹ï¼šå…¥åŠ›\"-1\"â†’å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«ï¼š\"åå‰-1ï¼Žæ‹¡å¼µå­\"");
 
 			if (footerText == null) {
 				label.setText("Error!");
@@ -79,13 +79,13 @@ public class RenamerViewerStart extends JFrame {
 					CDirectory dir = (CDirectory) CFileSystem
 							.convertToCFile(file);
 
-					// Moodle—pƒŠƒl[ƒ€
+					// Moodleç”¨ãƒªãƒãƒ¼ãƒ 
 					renameMoodleZip(dir, footerText);
 
-					// ƒnƒCƒtƒ“‚Å‹æØ‚Á‚ÄƒŠƒl[ƒ€(for It's class)
+					// ãƒã‚¤ãƒ•ãƒ³ã§åŒºåˆ‡ã£ã¦ãƒªãƒãƒ¼ãƒ (for It's class)
 					renameItsClassZip(dir, footerText);
 
-					// csvì¬—p
+					// csvä½œæˆç”¨
 					printCreaterNumber(dir, footerText);
 
 				} catch (Exception ex) {
@@ -109,7 +109,7 @@ public class RenamerViewerStart extends JFrame {
 					userdata = line.split(",");
 
 					for (CFileElement cfile : dir.getChildren()) {
-						// ‘O•ûˆê’v‚È‚ç
+						// å‰æ–¹ä¸€è‡´ãªã‚‰
 						if (cfile.getNameByString().indexOf(userdata[0]) >= 0) {
 							String extantion = cfile.getNameByString().split(
 									"\\.")[1];
